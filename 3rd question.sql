@@ -1,3 +1,4 @@
+---Creation of product_price_history table---
 
 CREATE TABLE product_price_history (
   product_id int(10) NOT NULL,
@@ -12,7 +13,7 @@ CREATE TABLE product_price_history (
   INDEX idx_product_current (product_id,is_active) 
 );
 
- 
+ ---Creation of products table---
 
 CREATE TABLE products (
   product_id int(10) NOT NULL,
@@ -23,8 +24,10 @@ CREATE TABLE products (
   
   
   
- Get the list of products whose current prices are greater than the average price in each category?
+Assumed a sample problem to write join query:
+Get the list of products whose current prices are greater than the average price in each category?
 
+---Join query---
 
 select 
 	p.product_name,
@@ -46,12 +49,12 @@ INNER JOIN
 	product p
 ON p.product_id = ph.product_id
 WHERE
-	is_active = 1					-- getting only the active prices, we can obtain the same results using end_date "WHERE end_date IS NULL"
+	is_active = 1		   -- getting only the active prices, we can obtain the same results using end_date "WHERE end_date IS NULL"
 GROUP BY p.category	
 ) cat_avg
 ON p.category = cat_avg.category
 WHERE
-	ph.is_active = 1				-- getting only the active prices
+	ph.is_active = 1	    -- getting only the active prices
 AND ph.price > cat_avg.avg_price    -- Getting only the prices greater than average price within a category
 	
 	
@@ -59,4 +62,4 @@ AND ph.price > cat_avg.avg_price    -- Getting only the prices greater than aver
 
   
   
-  --MYSQL-5.6
+ 
