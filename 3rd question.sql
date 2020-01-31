@@ -1,4 +1,14 @@
----Creation of product_price_history table---
+
+ ---Creation of products table---
+
+CREATE TABLE products (
+  product_id int(10) NOT NULL,
+  product_name varchar(512),
+  category varchar(255),
+  PRIMARY KEY (product_id)
+  );
+  
+  ---Creation of product_price_history table---
 
 CREATE TABLE product_price_history (
   product_id int(10) NOT NULL,
@@ -12,16 +22,6 @@ CREATE TABLE product_price_history (
   ON UPDATE CASCADE,
   INDEX idx_product_current (product_id,is_active) 
 );
-
- ---Creation of products table---
-
-CREATE TABLE products (
-  product_id int(10) NOT NULL,
-  product_name varchar(512),
-  category varchar(255),
-  PRIMARY KEY (product_id)
-  );
-  
   
   
 Assumed a sample problem to write join query:
